@@ -4,6 +4,7 @@ import br.soares.boardgame.exceptions.BoardException;
 import br.soares.chess.ChessMatch;
 import br.soares.chess.ChessPiece;
 import br.soares.chess.ChessPosition;
+import br.soares.chess.exceptions.ChessException;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -25,10 +26,8 @@ public class Main {
 
                 ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
             }
-        } catch (BoardException exception) {
-            System.out.printf("%nError: %s%n", exception.getMessage());
-        } catch (RuntimeException exception) {
-            throw new InputMismatchException("Error ChessPosition. Valid values are from A1 to H8");
+        } catch (ChessException | InputMismatchException exception) {
+            System.out.printf("%n%s%n", exception.getMessage());
         }
     }
 }

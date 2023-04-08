@@ -2,6 +2,7 @@ package br.soares.app;
 
 import br.soares.chess.ChessPiece;
 import br.soares.chess.ChessPosition;
+import br.soares.chess.enums.Color;
 import br.soares.util.OsSystems;
 import br.soares.util.enums.Systems;
 
@@ -11,7 +12,9 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class UI {
-
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_CYAN = "\u001B[36m";
     public static void cleanScreen() {
         try {
             String command;
@@ -56,7 +59,11 @@ public class UI {
         if (piece == null) {
             System.out.print("-");
         } else {
-            System.out.print(piece);
+            if (piece.getColor() == Color.WHITE) {
+                System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
+            } else {
+                System.out.print(ANSI_CYAN + piece + ANSI_RESET);
+            }
         }
         System.out.print(" ");
     }
