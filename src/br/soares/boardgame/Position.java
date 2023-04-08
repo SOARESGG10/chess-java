@@ -28,6 +28,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return "%s, %s".formatted(row, column);
+        return "[%s,%s]".formatted(row, column);
     }
 }
