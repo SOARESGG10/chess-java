@@ -4,6 +4,11 @@ import br.soares.chess.ChessPiece;
 
 public class UI {
 
+    public static void cleanScreen() {
+        System.out.print("\003[H\003[2J");
+        System.out.flush();
+    }
+
     public static void printBoard(ChessPiece[][] pieces) {
         for (int row = 0; row < pieces.length; row++) {
             System.out.print((8 - row) + " ");
