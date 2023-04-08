@@ -28,7 +28,7 @@ public class Main {
         } catch (BoardException exception) {
             System.out.printf("%nError: %s%n", exception.getMessage());
         } catch (RuntimeException exception) {
-            throw  new InputMismatchException("Error ChessPosition. Valid values are from A1 to H8");
+            throw new InputMismatchException("Error ChessPosition. Valid values are from A1 to H8");
         }
     }
 }
