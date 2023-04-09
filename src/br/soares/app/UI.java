@@ -15,6 +15,8 @@ public class UI {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_GREEN_BACKGROUND = "\033[42m";
+
     public static void cleanScreen() {
         try {
             String command;
@@ -48,16 +50,29 @@ public class UI {
         for (int row = 0; row < pieces.length; row++) {
             System.out.print((8 - row) + " ");
             for (int column = 0; column < pieces.length; column++) {
-                printPiece(pieces[row][column]);
+                printPiece(pieces[row][column], false);
             }
             System.out.println();
         }
         System.out.println("  A B C D E F G H");
     }
 
-    private static void printPiece(ChessPiece piece) {
+    public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
+        for (int row = 0; row < pieces.length; row++) {
+            System.out.print((8 - row) + " ");
+            for (int column = 0; column < pieces.length; column++) {
+                printPiece(pieces[row][column], possibleMoves[row][column]);
+            }
+            System.out.println();
+        }
+        System.out.println("  A B C D E F G H");
+    }
+    private static void printPiece(ChessPiece piece, boolean background) {
+        if(background) {
+            System.out.print(ANSI_GREEN_BACKGROUND);
+        }
         if (piece == null) {
-            System.out.print("-");
+            System.out.print("-" + ANSI_RESET);
         } else {
             if (piece.getColor() == Color.WHITE) {
                 System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
